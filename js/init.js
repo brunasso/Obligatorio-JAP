@@ -44,4 +44,29 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  if (sessionStorage.getItem('usuario') === null){
+    location.href = 'login.html';
+  }
+
+  function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log('Full Name: ' + profile.getName());
+    console.log("Image URL: " + profile.getImageUrl());
+    
+    window.location.href = 'index.html';
+    
+    
+    
+    
+  }
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      sessionStorage.removeItem("usuario");
+      alert( "Usuario desconectado");
+    });
+  }
+
 });

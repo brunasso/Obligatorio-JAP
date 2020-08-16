@@ -139,3 +139,21 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#divFormulario{
+  justify-content: center;
+  width: 50%;
+  margin: 20%;
+}
+
+#formulary{
+  justify-content: center;
+  margin: 25%;
+  padding: 15% 13% 15% 14%;
+  border: 2px solid white;
+  box-shadow: 10% - #05b698;
+  border-radius: 2px;
+}
+.g-signin2{
+  margin: 0% 30% 0% 30%;
+}
