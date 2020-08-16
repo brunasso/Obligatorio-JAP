@@ -44,29 +44,37 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  if (sessionStorage.getItem('usuario') === null){
-    location.href = 'login.html';
-  }
+  
+  // Comprueba si ya hay una sesión en el Storage
+  comprobarLogin();  
+    function comprobarLogin(){
+      if(sessionStorage.getItem('usuario') === null){
+        location.href = 'login.html?#'
+      }else{
+        document.getElementById('bienvenida').innerHTML = "Bienvenido " + sessionStorage.getItem('usuario');
+      }
+    }
+    
+    document.getElementById('logout').addEventListener('click', function(){
+      logOut();
+      signOut();
+    })
+    
+    // Cerrar sesión total
+    document.getElementById('logout').addEventListener('click', function(){      
+      sessionStorage.removeItem('usuario');
+      signOut();
+      location.reload();
+    })
+    
 
-  function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log('Full Name: ' + profile.getName());
-    console.log("Image URL: " + profile.getImageUrl());
-    
-    window.location.href = 'index.html';
-    
-    
-    
-    
-  }
+    // Cerrar sesión en Google
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
 
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      sessionStorage.removeItem("usuario");
-      alert( "Usuario desconectado");
-    });
-  }
 
 });
