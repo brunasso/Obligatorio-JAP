@@ -183,6 +183,52 @@ a.custom-card:hover {
 .abcRioButtonContentWrapper:hover{
   background-color: rgb(235, 0, 235);
 }
-/*nav a{
-  text-decoration: none!important;
-}*/
+nav a{
+  text-decoration: none!important
+}
+.py-2:hover{
+  color:  rgba(235, 0, 235, 0.4);
+}
+#bienvenido-logout{
+  list-style: none;
+}
+.subTitulosProductInfo{
+  text-align: center;
+}
+#productImagesGallery,
+#productRelated{
+  width: 100%;
+}
+.imgIlustrativas,
+.imgProductRelated{
+  width: 30%;
+  margin: 1%;
+}
+.imgIlustrativas img,
+.imgProductRelated img{
+  width: 100%;
+}
+.imgIlustrativas img:hover{
+  transform: scale(1.2);
+  transition: 1s;
+}
+.puntuacion {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  }
+  .puntuacion input {
+  position: absolute;
+  top: -100px;
+  }
+  .puntuacion label {
+  float: right;
+  color: #c1b8b8;
+  font-size: 30px; 
+  }
+
+  .puntuacion label:hover,
+  .puntuacion label:hover ~ label,
+  .puntuacion input:checked ~ label {
+  color:rgb(236, 86, 236);
+  }

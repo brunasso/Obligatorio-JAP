@@ -47,8 +47,9 @@ document.addEventListener("DOMContentLoaded", function(e){
   
   // Invocamos levantar menu navegador sin crear en el html directo
   cargarNav();
+
   function cargarNav(){
-    let navMenu = ['Inicio', 'Categorías', 'Productos', 'Vender', 'Mi carrito', 'Salir'];
+    let navMenu = ['Inicio', 'Categorías', 'Productos', 'Vender', 'Mi carrito', 'Cerrar Sesión'];
 
     HtmlContentToAppend = `
       <a class="py-2 d-none d-md-inline-block" href="index.html">` + navMenu[0] + `</a>
@@ -56,8 +57,12 @@ document.addEventListener("DOMContentLoaded", function(e){
       <a class="py-2 d-none d-md-inline-block" href="products.html">` + navMenu[2] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">` + navMenu[3] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">` + navMenu[4] + `</a>
-      <a class="py-2 d-none d-md-inline-block" href="" id="logout">` + navMenu[5] + `</a>
-      <a class="py-2 d-none d-md-inline-block" href="" id="bienvenida"></a>
+      <li id="bienvenido-logout"><a class="py-2 d-none d-md-inline-block" href="" id="bienvenida"></a>
+                <span hidden="hidden" id="spanLogout"><ul class="nivel2">
+                    <a class="py-2 d-none d-md-inline-block" href="" id="logout">` + navMenu[5] + `</a>
+                 </ul></span>
+             </li>
+             
   `
   document.getElementById('navegador').innerHTML = HtmlContentToAppend;
 
@@ -72,10 +77,22 @@ document.addEventListener("DOMContentLoaded", function(e){
       document.getElementById('bienvenida').innerHTML = "Bienvenido " + sessionStorage.getItem('usuario');
     }
   }
+
+
+  //Desoculto el botón para salir.
+  var desocultarLogout = document.getElementById('bienvenido-logout');
+  var spanLogout = document.getElementById('spanLogout');
+  desocultarLogout.addEventListener('mouseover', function(){
+    spanLogout.hidden = false;
+  })
+  desocultarLogout.addEventListener('mouseout', function(){
+    spanLogout.hidden = true;
+  })
+  
   
   document.getElementById('logout').addEventListener('click', function(){
-    logOut();
     signOut();
+    logOut();
   })
   
   // Cerrar sesión total
@@ -93,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function(e){
       console.log('User signed out.');
     });
   }
+  
+  
   
   
 });
