@@ -26,6 +26,8 @@ function guardar(){
     // Envío el comentario en el array que contiene todos los comentarios
     comentarios.push(commit);
     mostrar(comentarios);
+    textarea.value = '';
+    
 }
 
 //Creamos contenido HTML en donde se va a alojar dichos comentarios.
@@ -84,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function(e){
                 <img src="${product.images[i]}">
                 </div>`
             }
+            
+            
             
             productImagesGallery.innerHTML = htmlContentToAppend;
             

@@ -4,7 +4,7 @@
 document.addEventListener("DOMContentLoaded", function(e){
 
     // Recibo parametros del formulario
-    let ingresar = document.getElementById('formulary');
+    let ingresar = document.getElementById('formularyForm');
     ingresar.addEventListener('submit', function() {
         var usuario = document.getElementById('usuario').value;
         var password = document.getElementById('password').value;

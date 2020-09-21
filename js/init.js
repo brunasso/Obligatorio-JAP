@@ -49,20 +49,23 @@ document.addEventListener("DOMContentLoaded", function(e){
   cargarNav();
 
   function cargarNav(){
-    let navMenu = ['Inicio', 'Categorías', 'Productos', 'Vender', 'Mi carrito', 'Cerrar Sesión'];
+    let navMenu = ['Inicio', 'Categorías', 'Productos', 'Vender', 'Mi carrito', 'Mi Perfil', 'Cerrar Sesión'];
 
     HtmlContentToAppend = `
       <a class="py-2 d-none d-md-inline-block" href="index.html">` + navMenu[0] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">` + navMenu[1] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">` + navMenu[2] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">` + navMenu[3] + `</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">` + navMenu[4] + `</a>
-      <li id="bienvenido-logout"><a class="py-2 d-none d-md-inline-block" href="" id="bienvenida"></a>
-                <span hidden="hidden" id="spanLogout"><ul class="nivel2">
-                    <a class="py-2 d-none d-md-inline-block" href="" id="logout">` + navMenu[5] + `</a>
-                 </ul></span>
-             </li>
-             
+      <div class="dropdown">
+  <button id="bienvenida" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+  </button>
+  <div id="dropDownBienvenida" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="cart.html">` + navMenu[4] + `</a>
+    <a class="dropdown-item" href="my-profile.html">` + navMenu[5] + `</a>
+    <a class="dropdown-item" href="" id="logout">` + navMenu[6] + `</a>
+  </div>
+</div>
   `
   document.getElementById('navegador').innerHTML = HtmlContentToAppend;
 
@@ -77,17 +80,6 @@ document.addEventListener("DOMContentLoaded", function(e){
       document.getElementById('bienvenida').innerHTML = "Bienvenido " + sessionStorage.getItem('usuario');
     }
   }
-
-
-  //Desoculto el botón para salir.
-  var desocultarLogout = document.getElementById('bienvenido-logout');
-  var spanLogout = document.getElementById('spanLogout');
-  desocultarLogout.addEventListener('mouseover', function(){
-    spanLogout.hidden = false;
-  })
-  desocultarLogout.addEventListener('mouseout', function(){
-    spanLogout.hidden = true;
-  })
   
   
   document.getElementById('logout').addEventListener('click', function(){
