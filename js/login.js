@@ -4,8 +4,8 @@
 document.addEventListener("DOMContentLoaded", function(e){
 
     // Recibo parametros del formulario
-    let ingresar = document.getElementById('formularyForm');
-    ingresar.addEventListener('submit', function() {
+    let ingresar = document.getElementById('ingresa');
+    ingresar.addEventListener('click', function() {
         var usuario = document.getElementById('usuario').value;
         var password = document.getElementById('password').value;
         logIn(usuario, password);
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         var usuario = profile.getName();
-        var image = profile.image();
+        var image = profile.getImageUrl();
         sessionStorage.setItem('usuario', usuario);
         sessionStorage.setItem('image', image)
         index();

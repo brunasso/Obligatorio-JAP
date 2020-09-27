@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(e){
   
   
   document.getElementById('logout').addEventListener('click', function(){
-    signOut();
+    googleLogOut();
     logOut();
   })
   
@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     sessionStorage.removeItem('usuario');
     sessionStorage.removeItem('imagen');
     googleLogOut();
-    eliminarCookies("G_AUTHUSER_H=1");
     location.reload();
   })
   
@@ -107,11 +106,5 @@ document.addEventListener("DOMContentLoaded", function(e){
   function googleLogOut() {
     var auth2 = gapi.auth2.getAuthInstance().signOut();
   }
-  
-  function eliminarCookies(cName) {
-    debugger;
-    setCookie(cName,"",-1);
-  };
-  
   
 });
