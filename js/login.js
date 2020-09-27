@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     }
 
     document.getElementById('googleLogin').addEventListener('click',function(){
+        logIn()
         onSignIn();
     })
 
@@ -35,7 +36,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         var usuario = profile.getName();
-        sessionStorage.setItem('usuario', usuario)
+        var image = profile.image();
+        sessionStorage.setItem('usuario', usuario);
+        sessionStorage.setItem('image', image)
         index();
       }
 

@@ -81,10 +81,35 @@ document.addEventListener("DOMContentLoaded", function(e){
             //Imagenes del producto seleccionado
             let htmlContentToAppend = '';
             for (let i = 0; i < product.images.length; i++) {
-                htmlContentToAppend += `
-                <div class="imgIlustrativas">
-                <img src="${product.images[i]}">
-                </div>`
+                if(i==0){
+                    htmlContentToAppend += `
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                    </a>
+                    <div class="carousel-item active" class="imgIlustrativas">
+                    <img src="${product.images[i]}" class="d-block w-100">
+                    </div>
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                    `
+                }else{
+                    htmlContentToAppend += `
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+                <div class="carousel-item" class="imgIlustrativas">
+                <img class="d-block w-100" src="${product.images[i]}">
+                </div>
+                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>`
+                }
+                
             }
             
             

@@ -77,7 +77,13 @@ document.addEventListener("DOMContentLoaded", function(e){
     if(sessionStorage.getItem('usuario') === null){
       location.href = 'login.html?#'
     }else{
-      document.getElementById('bienvenida').innerHTML = "Bienvenido " + sessionStorage.getItem('usuario');
+      if(sessionStorage.getItem('imagen') == null){
+        document.getElementById('bienvenida').innerHTML = '<i class="far fa-user-circle"></i>'+ " " + sessionStorage.getItem('usuario'); 
+      }
+      else{
+        var imageProfile = sessionStorage.getItem('imagen');
+        document.getElementById('bienvenida').innerHTML = '<img src="'+ imageProfile +'"></img>' + " " + sessionStorage.getItem('usuario');
+      }
     }
   }
   
@@ -90,20 +96,22 @@ document.addEventListener("DOMContentLoaded", function(e){
   // Cerrar sesión total
   document.getElementById('logout').addEventListener('click', function(){      
     sessionStorage.removeItem('usuario');
-    signOut();
+    sessionStorage.removeItem('imagen');
+    googleLogOut();
+    eliminarCookies("G_AUTHUSER_H=1");
     location.reload();
   })
   
   
   // Cerrar sesión en Google
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
+  function googleLogOut() {
+    var auth2 = gapi.auth2.getAuthInstance().signOut();
   }
   
-  
+  function eliminarCookies(cName) {
+    debugger;
+    setCookie(cName,"",-1);
+  };
   
   
 });
