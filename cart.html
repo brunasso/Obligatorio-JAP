@@ -4,14 +4,14 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
-
+  
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
+  
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -21,7 +21,7 @@
       -ms-user-select: none;
       user-select: none;
     }
-
+    
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -38,21 +38,42 @@
     <div id="navegador" class="container d-flex flex-column flex-md-row justify-content-between">
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <!-- Carrito de compras -->
+  
+  <div id="carrito">
+    <h2>Carrito</h2>
+    <h4 class="text-muted">Tienes <span class="badge badge-success" class="cont"></span> articulo/s</h4><hr>
+    <div id="cartProductosPadre">
+      <div id="cartProductos" >
+      </div>
+      
+      <h5 class="mb-3">Tipo de publicación</h5>
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input id="goldradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(15)" required="" >
+          <label class="custom-control-label" for="goldradio">Premium (15%)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="premiumradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(7)" required="">
+          <label class="custom-control-label" for="premiumradio">Express (7%)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="standardradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(5)" required="">
+          <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
+        </div>
+        <div class="row">
+          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Formas de Pago</button>
+        </div>
+      </div>
+      
+</div>
+<div id="cartPrecioTotal">
+</div>
     </div>
   </div>
+  <footer></footer>
   <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
   </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>

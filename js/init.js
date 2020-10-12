@@ -49,6 +49,14 @@ document.addEventListener("DOMContentLoaded", function(e){
   cargarNav();
 
   function cargarNav(){
+    let head = document.getElementsByTagName('head')[0];
+    let link = document.createElement('link');
+    link.rel ='stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/font-awesome.min.css';
+    head.appendChild(link);
+ 
+
     let navMenu = ['Inicio', 'Categorías', 'Productos', 'Vender', 'Mi carrito', 'Mi Perfil', 'Cerrar Sesión'];
 
     HtmlContentToAppend = `
@@ -56,19 +64,27 @@ document.addEventListener("DOMContentLoaded", function(e){
       <a class="py-2 d-none d-md-inline-block" href="categories.html">` + navMenu[1] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">` + navMenu[2] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">` + navMenu[3] + `</a>
-      <div class="dropdown">
-  <button id="bienvenida" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    
-  </button>
+      <span id="tipoMonedaOnOff"><div >
+      <select name="Moneda" id="tipoMoneda">
+        <option value="USD">U$S</option>
+        <option value="UYU">$</option>
+      </select>
+    </div>
+    </span>
+<div class="dropdown">
+    <button id="bienvenida" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
   <div id="dropDownBienvenida" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="cart.html">` + navMenu[4] + `</a>
+    <a class="dropdown-item" href="cart.html">` + navMenu[4] + `<span class="badge badge-success" class="cont"></span></a>
     <a class="dropdown-item" href="my-profile.html">` + navMenu[5] + `</a>
     <a class="dropdown-item" href="" id="logout">` + navMenu[6] + `</a>
   </div>
 </div>
   `
+  if(window.location == 'http://localhost:5500/cart.html' || window.location == 'https://brunasso.github.io/Obligatorio-JAP/cart.html'){
+        
+  }
   document.getElementById('navegador').innerHTML = HtmlContentToAppend;
-
+  document.getElementById('tipoMonedaOnOff').style.display = "none";
   }
   
   // Comprueba si ya hay una sesión en el Storage
