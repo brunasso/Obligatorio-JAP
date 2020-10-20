@@ -2,14 +2,15 @@ const CART_COMPLETE = 'https://japdevdep.github.io/ecommerce-api/cart/654.json';
 var articulosCarrito = {};
 var moneda = '';
 var usd = 40;
-var precioFinal = 0;
+var subtotalFinal = 0;
 var comision = 0;
-var inicioCarrito = 0;
+var tipoEnvioSeleccionado = 0;
+var validacionFinalCart = [];
 
 function cartProducts(){
     document.getElementById('tipoMonedaOnOff').style.display = "block";
     let htmlContentToAppend = '';
-    precioFinal = 0;
+    subtotalFinal = 0;
     if(articulosCarrito.length > 0){
     for (let i = 0; i < articulosCarrito.length; i++) {
             let costo = 0;
@@ -31,7 +32,7 @@ function cartProducts(){
                     moneda = 'USD';
                 }
             }
-            precioFinal += costo*articulosCarrito[i].count;
+            subtotalFinal += costo*articulosCarrito[i].count;
         htmlContentToAppend+=`
             <div>
             <img class="imgIlustrativasCart" src="${articulosCarrito[i].src}">
@@ -45,35 +46,6 @@ function cartProducts(){
             </div>
             <br><br>
             `
-
-            //Cargo los costos finales en la ultima vuelta del for, antes que finalice la carga de los productos en el carrito
-
-           /* if(i >= articulosCarrito.length-1){
-                htmlContentToAppend +=`
-                <h5 class="mb-3">Tipo de publicación</h5>
-                <div class="d-block my-3">
-                  <div class="custom-control custom-radio">
-                    <input id="goldradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(15)" required="" >
-                    <label class="custom-control-label" for="goldradio">Premium (15%)</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input id="premiumradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(7)" required="">
-                    <label class="custom-control-label" for="premiumradio">Express (7%)</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input id="standardradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(5)" required="">
-                    <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
-                  </div>
-                  <div class="row">
-                    <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Formas de Pago</button>
-                  </div>
-                </div>
-                
-    </div>
-    <div id="cartPrecioTotal">
-    </div>
-    `
-            }*/
 
               document.getElementById('cartProductos').innerHTML  = htmlContentToAppend;
 
@@ -100,15 +72,19 @@ function cartProducts(){
                   <span class="text-muted" id="comissionText">-</span>
                </li>
              <li class="list-group-item d-flex justify-content-between">
-                   <span>Total ($)</span>
+                   <span>Total (${moneda})</span>
                    <span class="text-muted" id="totalText">-</span>
              </li>
        </ul>`;
-       document.getElementById('productCostText').innerHTML = '<strong>' + new Intl.NumberFormat("de-DE").format(precioFinal) + moneda + '</strong>';
-       document.getElementById('comissionText').innerHTML = comision.toFixed(2) + moneda;
-       document.getElementById('totalText').innerHTML = (comision + precioFinal).toFixed(2);
+       document.getElementById('productCostText').innerHTML = '<strong>' + new Intl.NumberFormat("de-DE").format(subtotalFinal) +' '+ moneda + '</strong>';
+       document.getElementById('comissionText').innerHTML = (subtotalFinal * comision).toFixed(2) +' '+ moneda;
+       let precioFinal = (subtotalFinal * comision) + subtotalFinal;
+       document.getElementById('totalText').innerHTML = (precioFinal).toFixed(2) +' '+ moneda;
 }
 else{
+    document.getElementById('productCostText').innerHTML = '00,00' +' '+ moneda;
+       document.getElementById('comissionText').innerHTML = '00,00'+' '+ moneda;
+       document.getElementById('totalText').innerHTML = '00,00'+ ' '+ moneda;
     document.getElementById('cartProductos').innerHTML = "<h1>No hay productos en el carrito</h1>";
 }
 }
@@ -118,13 +94,8 @@ else{
 
 //Borro articulo seleccionado
 function removerCartProduct(productoCarrito){
-    for (let i = 0; i < articulosCarrito.length; i++) {
-        if(i == productoCarrito){
-            console.log(articulosCarrito);
-            articulosCarrito.splice(i, 1);
-            cartProducts();
-        }
-    }
+    articulosCarrito.splice(productoCarrito, 1);
+    cartProducts();
 }
 
 //Resto cantidad del producto seleccionado
@@ -147,13 +118,22 @@ function plusCartProducts(productoCarrito){
         if(i == productoCarrito){
             articulosCarrito[i].count += 1;
             cartProducts();
+
         }
     }
 }
 
 //Calculo porcentaje de envío sobre subtotal del valor de compra
-function porcentajeEnvio(valor){
-    comision = precioFinal * (valor/100);
+function porcentajeEnvio(){
+    if(document.getElementById('goldradio').checked){
+        comision = 0.15;   
+    }
+    if(document.getElementById('premiumradio').checked){
+        comision = 0.07;   
+    }
+    if(document.getElementById('standardradio').checked){
+        comision = 0.05;   
+    }
     cartProducts();
 }
 
@@ -165,19 +145,35 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             articulosCarrito = resultObj.data.articles;
             cartProducts();
+            //Clickeo el valor de envío más económico para que tenga uno seleccionado
+            id('standardradio').click();
         }});
         
 
         
-        
+        var finalizarCompraCart = document.getElementById('finalizarCompraCart');
+        finalizarCompraCart.addEventListener('click', function(){
+            let direccionCart = document.getElementById('direccionCart').value;
+            let numeroCart = document.getElementById('numeroCart').value;
+            let esquinaCart = document.getElementById('esquinaCart').value;
 
+            validacionFinalCart.push(direccionCart, numeroCart, esquinaCart);
+        });
 
-        //Eleccion de tipo de Moneda
+        //Eleccion de tipo de Moneda        
        var tipoMoneda = document.getElementById('tipoMoneda');
        tipoMoneda.addEventListener('change', function(){
          moneda = tipoMoneda.value;
          cartProducts();
        });
 
+       document.getElementById('finalizarCompraCart').addEventListener('click', function(){
+
+        Swal.fire(
+            'Bien hecho!',
+            'Haz finalizado la compra',
+            'success'
+          )
+       })
        
 });

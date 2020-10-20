@@ -6,6 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const id = document.getElementById.bind(document);
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -64,12 +65,11 @@ document.addEventListener("DOMContentLoaded", function(e){
       <a class="py-2 d-none d-md-inline-block" href="categories.html">` + navMenu[1] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">` + navMenu[2] + `</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">` + navMenu[3] + `</a>
-      <span id="tipoMonedaOnOff"><div >
+      <span class="py-2" id="tipoMonedaOnOff">
       <select name="Moneda" id="tipoMoneda">
         <option value="USD">U$S</option>
         <option value="UYU">$</option>
       </select>
-    </div>
     </span>
 <div class="dropdown">
     <button id="bienvenida" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>

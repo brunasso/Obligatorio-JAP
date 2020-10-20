@@ -37,9 +37,10 @@
     <img src="img/login.png" id="imgLogin" alt="Login">
     <div id="formularyForm" action="#">
       <h4 class="ingresar" for="usuario">Ingrese su correo electrónico</h4><br>
-      <input type="usuario" id="usuario" placeholder="Ingrese correo electrónico "><br><br>
+      <fieldset>
+        <input type="usuario" id="usuario" placeholder="Ingrese correo electrónico" required><br><br>
       <h4 for="password" class="ingresar">Contraseña</h4><br>
-      <input type="password" id="password" placeholder="ingrese su clave"><br><br>
+      <input type="password" id="password" placeholder="ingrese su clave" required><br><br>
       <button id="ingresa" class="ingresar btn btn-primary"><h4>Iniciar sesión</h4></button>
     </div><br>
     <div class="g-signin2" data-onsuccess="onSignIn" ></div>

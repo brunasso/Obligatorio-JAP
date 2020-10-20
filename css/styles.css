@@ -219,7 +219,13 @@ nav a{
   text-align: center;
 }
 #tipoMoneda{
+  margin-top: 5%;
   float: right;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  text-align-last:center;
+
 }
 .costosCart{
   display: inline-block;

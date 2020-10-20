@@ -47,30 +47,64 @@
     <div id="cartProductosPadre">
       <div id="cartProductos" >
       </div>
-      
+      <div>
+        <div>
+          <label for="">Dirección</label>
+          <input type="text" id="direccionCart" class="form-control">
+        </div>
+        <div>
+          <label for="" >Número</label>
+          <input type="text" id="numeroCart" class="form-control">
+        </div>
+        <div>
+          <label for="">Esquina</label>
+          <input type="text" id="esquinaCart" class="form-control">
+        </div>
+      </div><br><br>
       <h5 class="mb-3">Tipo de publicación</h5>
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
-          <input id="goldradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(15)" required="" >
+          <input id="goldradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio()" required="" >
           <label class="custom-control-label" for="goldradio">Premium (15%)</label>
         </div>
         <div class="custom-control custom-radio">
-          <input id="premiumradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(7)" required="">
+          <input id="premiumradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio()" required="">
           <label class="custom-control-label" for="premiumradio">Express (7%)</label>
         </div>
         <div class="custom-control custom-radio">
-          <input id="standardradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio(5)" required="">
+          <input id="standardradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio()" required="" >
           <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
         </div>
+        <br>
         <div class="row">
-          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Formas de Pago</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Formas de Pago</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Formas de Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
 </div>
 <div id="cartPrecioTotal">
 </div>
-    </div>
+<button id="finalizarCompraCart" class="btn btn-light">Finalizar Compra</button>
+</div>
   </div>
   <footer></footer>
   <div id="spinner-wrapper">
@@ -80,6 +114,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>
