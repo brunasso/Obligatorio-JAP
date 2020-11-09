@@ -47,22 +47,25 @@
     <div id="cartProductosPadre">
       <div id="cartProductos" >
       </div>
-      <div>
+      <div class="datosPorcentajeCostosCart">
         <div>
-          <label for="">Dirección</label>
+          <label for=""><strong>Dirección</strong></label>
           <input type="text" id="direccionCart" class="form-control">
+          <span class="validacion" id="direccion"></span>
         </div>
         <div>
-          <label for="" >Número</label>
+          <label for="" ><strong>Número</strong></label>
           <input type="text" id="numeroCart" class="form-control">
+          <span class="validacion" id="numero"></span>
         </div>
         <div>
-          <label for="">Esquina</label>
+          <label for=""><strong>Esquina</strong></label>
           <input type="text" id="esquinaCart" class="form-control">
+          <span class="validacion" id="esquina"></span>
         </div>
       </div><br><br>
-      <h5 class="mb-3">Tipo de publicación</h5>
-      <div class="d-block my-3">
+      <div class="d-block my-3 datosPorcentajeCostosCart">
+        <h5 class="mb-3">Tipo de publicación</h5>
         <div class="custom-control custom-radio">
           <input id="goldradio" name="envioCart" type="radio" class="custom-control-input" onclick="porcentajeEnvio()" required="" >
           <label class="custom-control-label" for="goldradio">Premium (15%)</label>
@@ -77,23 +80,42 @@
         </div>
         <br>
         <div class="row">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Formas de Pago</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" id="modalButton" data-target="#exampleModal">Formas de Pago</button>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Formas de Pago</h5>
+                <h5 class="modal-title"  >Formas de Pago</h5> <!-- id="exampleModalButton" -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <button type="button" class="btn btn-primary" id="tarjetaDebito">Tarjeta de Débito</button>
+              <button type="button" class="btn btn-primary" id="tarjetaCredito">Tarjeta de Crédito</button>
+              <div class="modal-body" id="camposTarjeta" style="display:none">
+                <h2 id="tarjetaDe"></h2>
+                <label for="Titular"><strong>Titular de la tarjeta</strong></label><br>
+                <input type="text" class="form-control" id="titularCart">
+                <span class="validacion" id="titular"></span><br>
+
+                <label for="vencimiento"><strong>Fecha de vencimiento</strong></label>
+                <input type="text" class="form-control" id="vencimientoCart">
+                <span class="validacion" id="vencimiento"></span><br>
+
+                <label for="Tarjeta"><strong>Número de la tarjeta</strong></label>
+                <input type="number" class="form-control" id="tarjetaCart">
+                <span class="validacion" id="tarjeta"></span><br>
+
+                <label for="codigo"><strong>Código de seguridad</strong></label>
+                <input type="text" class="form-control" id="codigoCart">
+                <span class="validacion" id="codigo"><br></span>
                 
               </div>
               <div class="modal-footer">
+
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
               </div>
             </div>
           </div>
@@ -101,9 +123,9 @@
       </div>
       
 </div>
-<div id="cartPrecioTotal">
+<div id="cartPrecioTotal" id="precioTotalCart">
 </div>
-<button id="finalizarCompraCart" class="btn btn-light">Finalizar Compra</button>
+<button id="finalizarCompraCart" class="btn btn-light datosPorcentajeCostosCart">Finalizar Compra</button>
 </div>
   </div>
   <footer></footer>

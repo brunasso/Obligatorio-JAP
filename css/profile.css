@@ -1,0 +1,18 @@
+#imgProfile,
+#dataProfile{
+    text-align: center;
+}
+#dataProfile input{
+    width: 60%;
+    height: 2em;
+}
+.btn{
+    background-color: rgb(128, 50, 128);
+    color: white;
+    height: 3.5em;
+    border-radius: 8%;
+}
+.btn:hover{
+    background-color: rgb(236, 86, 236);
+     color: white;
+}

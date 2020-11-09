@@ -12,24 +12,9 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/profile.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
@@ -39,19 +24,26 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div id="imgProfile">
+      <h2>Mi Perfil</h2>
+      <img src="img/emptyProfile.png" alt="imagenVacía" id="imgProfile"><br><br>
+      <input type="file" accept=".png,.jpeg,.jpg" id="levantarImg">
+    </div><br>
+    <div id="dataProfile">
+      <label for="Nombre"></label>
+      <input type="text" placeholder="Nombre" class="datosProfile" id=""><br><br>
+      <label for="Apellido"></label>
+      <input type="text" placeholder="Apellido" class="datosProfile" id=""><br><br>
+      <label for="Edad"></label>
+      <input type="number" placeholder="Edad" class="datosProfile" id=""><br><br>
+      <label for="Email"></label>
+      <input type="text" placeholder="Email" class="datosProfile" id=""><br><br>
+      <label for="Telefono"></label>
+      <input type="text" placeholder="Telefono" class="datosProfile"><br><br>
+      <button class="btn btn-light" id="guardarCambiosProfile" >Guardar Cambios</button>
     </div>
+    
   </div>
-  <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
   <div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
